@@ -12,7 +12,7 @@ lazy val metaMacroSettings: Seq[Def.Setting[_]] = Seq(
     url("http://dl.bintray.com/content/sbt/sbt-plugin-releases"))(
     Resolver.ivyStylePatterns),
   resolvers += Resolver.bintrayIvyRepo("scalameta", "maven"),
-  addCompilerPlugin("org.scalameta" % "paradise" % "3.0.0.152" cross CrossVersion.full),
+  addCompilerPlugin("org.scalameta" % "paradise" % "3.0.0-M7" cross CrossVersion.full),
   libraryDependencies ++= Seq(
     "org.scala-lang" % "scala-reflect" % scalaVersion.value,
     "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided"
@@ -35,7 +35,7 @@ lazy val root = (project in file("."))
 lazy val acase = (project in file("acase"))
   .settings(commonSettings("acase"))
   .settings(metaMacroSettings)
-  .settings(libraryDependencies += "org.scalameta" %% "scalameta" % "1.4.0")// % "provided")
+  .settings(libraryDependencies += "org.scalameta" %% "scalameta" % "1.6.0")// % "provided")
 
 lazy val sample = (project in file("./sample"))
   .settings(commonSettings("sample"))
