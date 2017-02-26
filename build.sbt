@@ -11,14 +11,10 @@ val scala = "2.12.1"
 // https://github.com/scalameta/sbt-macro-example/blob/master/build.sbt
 lazy val metaMacroSettings: Seq[Def.Setting[_]] = Seq(
   resolvers += Resolver.sonatypeRepo("releases"),
-  resolvers += Resolver.url(
-    "bintray-sbt-plugin-releases",
-    url("http://dl.bintray.com/content/sbt/sbt-plugin-releases"))(
-    Resolver.ivyStylePatterns),
   resolvers += Resolver.bintrayIvyRepo("scalameta", "maven"),
   addCompilerPlugin("org.scalameta" % "paradise" % "3.0.0-M7" cross CrossVersion.full),
   libraryDependencies ++= Seq(
-    "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+    "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided"
   ),
   scalacOptions ++= Seq(
@@ -45,5 +41,5 @@ lazy val acase = (project in file("acase"))
 lazy val sample = (project in file("./sample"))
   .settings(commonSettings("sample"))
   .settings(metaMacroSettings)
-    .settings(libraryDependencies += groupId %% projectName % libVersion)
+    .settings(libraryDependencies += groupId %% projectName % libVersion % "provided")
 //  .dependsOn(acase)
