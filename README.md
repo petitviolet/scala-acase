@@ -1,5 +1,7 @@
 # @Case annotation let a class to case class
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.petitviolet/acase_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.petitviolet/acase_2.12)
+
 This repository provides a utility annotation.
 
 # @Case annotation
@@ -35,6 +37,16 @@ object CaseApp {
   def apply(n: Int, s: String): CaseApp = new CaseApp(n, s)
 }
 ```
+
+# setup
+
+in build.sbt
+
+```
+libraryDependencies += "net.petitviolet" %% "acase" % "<latest-version>"
+```
+
+can use with Scala2.11 and Scala2.12.
 
 # each annotations as a case class
 

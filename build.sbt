@@ -6,7 +6,7 @@ val groupId = "net.petitviolet"
 
 val projectName = "acase"
 
-val scala = "2.11.8"
+val scala = "2.12.1"
 
 // https://github.com/scalameta/sbt-macro-example/blob/master/build.sbt
 lazy val metaMacroSettings: Seq[Def.Setting[_]] = Seq(
@@ -45,5 +45,5 @@ lazy val acase = (project in file("acase"))
 lazy val sample = (project in file("./sample"))
   .settings(commonSettings("sample"))
   .settings(metaMacroSettings)
-//    .settings(libraryDependencies += groupId %% projectName % libVersio)
-  .dependsOn(acase)
+    .settings(libraryDependencies += groupId %% projectName % libVersion)
+//  .dependsOn(acase)
