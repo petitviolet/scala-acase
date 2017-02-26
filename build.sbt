@@ -1,6 +1,10 @@
 import sbt.Keys._
 
-val libVersion = "1.0"
+val libVersion = "0.1.0"
+
+val groupId = "net.petitviolet"
+
+val projectName = "acase"
 
 val scala = "2.11.8"
 
@@ -26,18 +30,20 @@ lazy val metaMacroSettings: Seq[Def.Setting[_]] = Seq(
 def commonSettings(prjName: String) = Seq(
   name := prjName,
   scalaVersion := scala,
-  version := "1.0"
+  version := libVersion,
+  organization := groupId
 )
 
 lazy val root = (project in file("."))
   .aggregate(acase, sample)
 
 lazy val acase = (project in file("acase"))
-  .settings(commonSettings("acase"))
+  .settings(commonSettings(projectName))
   .settings(metaMacroSettings)
   .settings(libraryDependencies += "org.scalameta" %% "scalameta" % "1.6.0")// % "provided")
 
 lazy val sample = (project in file("./sample"))
   .settings(commonSettings("sample"))
   .settings(metaMacroSettings)
+//    .settings(libraryDependencies += groupId %% projectName % libVersio)
   .dependsOn(acase)
