@@ -42,8 +42,26 @@ object CaseApp {
 
 in build.sbt
 
-```
-libraryDependencies += "net.petitviolet" %% "acase" % "<latest-version>"
+```scala
+lazy val metaMacroSettings: Seq[Def.Setting[_]] = Seq(
+  resolvers += Resolver.sonatypeRepo("releases"),
+  resolvers += Resolver.bintrayIvyRepo("scalameta", "maven"),
+  addCompilerPlugin("org.scalameta" % "paradise" % "3.0.0-M7" cross CrossVersion.full),
+  // if you need
+  // libraryDependencies ++= Seq(
+  //   "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
+  //   "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided"
+  // ),
+  scalacOptions ++= Seq(
+    "-Xplugin-require:macroparadise",
+    // "-Ymacro-debug-lite" // for debug
+  )
+)
+
+project.settings(
+  metaMacroSettings,
+  libraryDependencies += "net.petitviolet" %% "acase" % "<latest-version>"
+)
 ```
 
 can use with Scala2.11 and Scala2.12.
