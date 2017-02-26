@@ -1,4 +1,6 @@
-package net.petitviolet.meta.acase
+package net.petitviolet.acase.example
+
+import net.petitviolet.meta.acase.Case
 
 @Case
 class CaseApp(val n: Int, val s: String)

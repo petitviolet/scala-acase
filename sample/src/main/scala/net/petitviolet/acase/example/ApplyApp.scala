@@ -1,4 +1,6 @@
-package net.petitviolet.meta.acase
+package net.petitviolet.acase.example
+
+import net.petitviolet.meta.acase.Apply
 
 @Apply
 class ApplyApp(value: Int)
