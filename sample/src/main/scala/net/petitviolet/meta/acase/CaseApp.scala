@@ -2,6 +2,11 @@ package net.petitviolet.meta.acase
 
 @Case
 class CaseApp(val n: Int, val s: String)
+
+object CaseAppApp extends App {
+  val app = CaseApp(10, "hoge")
+  println(app.toString)
+}
 /**
  * class CaseApp(val n: Int, val s: String) {
  *   override def toString: String = {
