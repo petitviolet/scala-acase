@@ -8,6 +8,10 @@ class CaseApp(val n: Int, val s: String)
 object CaseAppApp extends App {
   val app = CaseApp(10, "hoge")
   println(app.toString)
+  val r = app.copy(n = 100) match {
+    case c @ CaseApp(nn, ss) => c == CaseApp(nn, ss)
+  }
+  assert(r == true)
 }
 /**
  * class CaseApp(val n: Int, val s: String) {
