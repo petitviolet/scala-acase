@@ -6,13 +6,7 @@ import scala.meta._
 @compileTimeOnly("not expanded")
 class Copy extends scala.annotation.StaticAnnotation {
   inline def apply(defn: Any): Any = meta {
-    defn match {
-      case cls @ Defn.Class(_, name, _, ctor, template) =>
-        Copy.insert(cls)
-      case _ =>
-        println(defn.structure)
-        abort("@Copy must annotate a class.")
-    }
+    Copy.insertFrom(defn)
   }
 }
 

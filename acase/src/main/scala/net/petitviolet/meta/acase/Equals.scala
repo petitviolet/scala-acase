@@ -1,16 +1,12 @@
 package net.petitviolet.meta.acase
 
+import scala.annotation.compileTimeOnly
 import scala.meta._
 
+@compileTimeOnly("not expand")
 class Equals extends scala.annotation.StaticAnnotation {
   inline def apply(defn: Any): Any = meta {
-    defn match {
-      case cls @ Defn.Class(_, name, _, ctor, template) =>
-        Equals.insert(cls)
-      case _ =>
-        println(defn.structure)
-        abort("@Equals must annotate a class.")
-    }
+    Equals.insertFrom(defn)
   }
 }
 

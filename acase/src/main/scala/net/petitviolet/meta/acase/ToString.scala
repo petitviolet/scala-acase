@@ -21,13 +21,7 @@ import scala.meta._
  */
 class ToString extends scala.annotation.StaticAnnotation {
   inline def apply(defn: Any): Any = meta {
-    defn match {
-      case cls @ Defn.Class(_, name, _, ctor, template) =>
-        ToString.insert(cls)
-      case _ =>
-        println(defn.structure)
-        abort("@ToString must annotate a class.")
-    }
+    ToString.insertFrom(defn)
   }
 }
 

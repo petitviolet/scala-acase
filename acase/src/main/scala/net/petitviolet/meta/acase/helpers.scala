@@ -8,6 +8,19 @@ private[petitviolet] trait InstanceMethodHelper {
 
   protected def create(cls: Defn.Class): Defn.Def
 
+  def insertFrom(defn: Any): Stat = {
+    defn match {
+      case Term.Block(
+      Seq(cls @ Defn.Class(_, name, _, ctor, _), companion: Defn.Object)) =>
+        // companion object exists
+        Term.Block(insert(cls) :: companion :: Nil)
+      case cls @ Defn.Class(_, name, _, ctor, template) =>
+        insert(cls)
+      case _ =>
+        abort(s"@${getClass.getSimpleName} must annotate a class.")
+    }
+  }
+
   def insert(cls: Defn.Class): Defn.Class = {
     val Defn.Class(_, name, _, ctor, template) = cls
     val stats = template.stats getOrElse Nil
