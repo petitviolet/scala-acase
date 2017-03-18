@@ -1,6 +1,6 @@
 import sbt.Keys._
 
-val libVersion = "0.1.0"
+val libVersion = "0.2.0"
 
 val groupId = "net.petitviolet"
 
@@ -41,5 +41,5 @@ lazy val acase = (project in file("acase"))
 lazy val sample = (project in file("./sample"))
   .settings(commonSettings("sample"))
   .settings(metaMacroSettings)
-    .settings(libraryDependencies += groupId %% projectName % libVersion % "provided")
-//  .dependsOn(acase)
+//    .settings(libraryDependencies += groupId %% projectName % libVersion % "provided")
+  .dependsOn(acase)
