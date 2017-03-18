@@ -8,6 +8,8 @@ val projectName = "acase"
 
 val scala = "2.12.1"
 
+crossScalaVersions := Seq("2.11.8", "2.12.0", "2.12.1")
+
 // https://github.com/scalameta/sbt-macro-example/blob/master/build.sbt
 lazy val metaMacroSettings: Seq[Def.Setting[_]] = Seq(
   resolvers += Resolver.sonatypeRepo("releases"),
