@@ -5,7 +5,7 @@ import scala.collection.immutable.Seq
 import scala.meta._
 
 @compileTimeOnly("not expanded")
-class Case {
+class Case extends scala.annotation.StaticAnnotation {
   inline def apply(defn: Any): Any = meta {
     defn match {
       case Term.Block(
