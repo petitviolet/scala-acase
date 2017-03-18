@@ -28,6 +28,8 @@ class CaseApp(val n: Int, val s: String) {
       this.n == other.n && this.s == other.s
     }
   }
+
+  def copy(n = this.n, s = this.s) = new CaseApp(n, s)
 }
 object CaseApp {
   def unapply(arg: CaseApp): Option[(Int, String)] = {
@@ -72,3 +74,4 @@ can use with Scala2.11 and Scala2.12.
 - @Unapply
 - @ToString
 - @Equals
+- @Copy
