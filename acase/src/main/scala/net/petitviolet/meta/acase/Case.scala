@@ -25,13 +25,12 @@ class Case extends scala.annotation.StaticAnnotation {
 }
 
 object Case {
-  private val toOpt = Option.apply[Defn.Object] _
   private def insertInstanceMethods(cls: Defn.Class): Defn.Class = {
     (ToString.insert _ compose Equals.insert compose Copy.insert)(cls)
   }
   private def insertCompanionMethods(cls: Defn.Class, companionOpt: Option[Defn.Object]): Defn.Object = {
     (Apply.insert(cls) _ andThen
-      toOpt andThen
+      Option.apply andThen
       Unapply.insert(cls))(companionOpt)
   }
 
