@@ -34,7 +34,6 @@ class ToString extends scala.annotation.StaticAnnotation {
 object ToString extends InstanceMethodHelper {
 
   override protected val METHOD_NAME: String = "toString"
-  scala.meta.Defn.Class
 
   override protected def create(cls: Defn.Class): Defn.Def = {
     val (name, paramss) = (cls.name, cls.ctor.paramss)
