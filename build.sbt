@@ -1,6 +1,6 @@
 import sbt.Keys._
 
-val libVersion = "0.2.0"
+val libVersion = "0.3.0"
 
 val groupId = "net.petitviolet"
 
