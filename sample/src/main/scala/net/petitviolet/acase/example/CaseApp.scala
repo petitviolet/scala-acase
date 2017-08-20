@@ -1,9 +1,8 @@
 package net.petitviolet.acase.example
 
-import net.petitviolet.meta.acase.Case
+import net.petitviolet.meta.acase._
 
-@Case
-class CaseApp(val n: Int, val s: String)
+@Case class CaseApp(val n: Int, val s: String)
 
 object CaseAppApp extends App {
   val app = CaseApp(10, "hoge")
@@ -25,6 +24,7 @@ object CaseAppApp extends App {
  *       this.n == other.n && this.s == other.s
  *     }
  *   }
+ *   def copy(n = this.n, s = this.s) = new CaseApp(n, s)
  * }
  * object CaseApp {
  *   def unapply(arg: CaseApp): Option[(Int, String)] = {
@@ -34,3 +34,14 @@ object CaseAppApp extends App {
  *   def apply(n: Int, s: String): CaseApp = new CaseApp(n, s)
  * }
  */
+
+@Equals @ToString @Copy @Unapply
+class Hoge(val n: Int, val s: String)
+
+object HogeApp extends App {
+  val h = new Hoge(10, "foo")
+  println(h)
+  h.copy(n = 100, s = "bar") match {
+    case x @ Hoge(a, b) => assert(x == new Hoge(a, b))
+  }
+}
