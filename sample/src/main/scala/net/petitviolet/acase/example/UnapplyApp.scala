@@ -3,12 +3,12 @@ package net.petitviolet.acase.example
 import net.petitviolet.meta.acase.Unapply
 
 @Unapply
-class UnapplyApp(protected val n: Int, val s: String)
+class MyClass(val n: Int, val s: String)
 
-object UnapplyAppApp extends App {
-  val target = new UnapplyApp(n = 100, s = "hoge")
+object UnapplyApp extends App {
+  val target = new MyClass(n = 100, s = "hoge")
   target match {
-    case UnapplyApp(n, s) => println(s"$n, $s")
+    case MyClass(n, s) => println(s"$n, $s")
     case _ => sys.error("out!")
   }
 }
