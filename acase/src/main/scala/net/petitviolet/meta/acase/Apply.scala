@@ -26,14 +26,19 @@ class Apply extends scala.annotation.StaticAnnotation {
   }
 }
 
-object Apply extends CompanionMethodHelper {
+private[acase] trait ApplyBase extends CompanionMethodHelper {
   override protected val METHOD_NAME: String = "apply"
 
-  override protected def create(cls: Defn.Class)(companionOpt: Option[Defn.Object]): Defn.Def = {
+  protected def createApply(cls: Defn.Class)(companionOpt: Option[Defn.Object]): Defn.Def = {
     val (name, paramss) = (cls.name, cls.ctor.paramss)
     val args = paramss.map { _.map { param => Term.Name(param.name.value) } }
     val defArgs = paramss.map { _.map { param => param.copy(mods = Nil) }}
     q"""def apply(...$defArgs): $name =
             new ${Ctor.Ref.Name(name.value)}(...$args)"""
+  }
+}
+object Apply extends ApplyBase {
+  override protected def create(cls: Defn.Class)(companionOpt: Option[Defn.Object]): Defn.Def = {
+    createApply(cls)(companionOpt)
   }
 }
