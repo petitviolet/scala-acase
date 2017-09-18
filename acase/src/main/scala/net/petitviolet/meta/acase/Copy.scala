@@ -10,12 +10,12 @@ class Copy extends scala.annotation.StaticAnnotation {
   }
 }
 
-object Copy extends InstanceMethodHelper {
+trait CopyBase extends InstanceMethodHelper {
   import scala.collection.immutable.Seq
 
   override protected val METHOD_NAME: String = "copy"
 
-  override protected def create(cls: Defn.Class): Defn.Def = {
+  protected def createCopy(cls: Defn.Class): Defn.Def = {
     val (clsName, clsParamss) = (cls.name, cls.ctor.paramss)
 
     val mods: Seq[Mod] = Nil
@@ -42,4 +42,9 @@ object Copy extends InstanceMethodHelper {
 
     Defn.Def(mods, name, tParams, paramss, None, body)
   }
+}
+
+object Copy extends CopyBase {
+  override protected def create(cls: Defn.Class): Defn.Def =
+    createCopy(cls)
 }
